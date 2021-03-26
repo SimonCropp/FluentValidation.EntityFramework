@@ -7,8 +7,6 @@ Adds [FluentValidation](https://fluentvalidation.net/) support to [EntityFramewo
 
 Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-effluentvalidation?utm_source=nuget-effluentvalidation&utm_medium=referral&utm_campaign=enterprise).
 
-toc
-
 
 ## NuGet package
 
