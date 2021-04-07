@@ -38,27 +38,20 @@ namespace EfFluentValidation
 
         static async IAsyncEnumerable<EntityValidationFailure> InnerVerify(DbContext dbContext, Func<Type, IEnumerable<IValidator>> validatorFactory)
         {
+            static void AddFailures(List<TypeValidationFailure> failures, IEnumerable<ValidationFailure> errors, IValidator validator)
+            {
+                failures.AddRange(errors.Select(failure => new TypeValidationFailure(validator.GetType(), failure)));
+            }
+
             foreach (var entry in dbContext.AddedEntries())
             {
                 List<TypeValidationFailure> validationFailures = new();
                 var clrType = entry.Metadata.ClrType;
                 var validationContext = BuildValidationContext(dbContext, entry);
-                var validators = validatorFactory(clrType);
-                if (validationContext.IsAsync)
+                foreach (var validator in validatorFactory(clrType))
                 {
-                    foreach (var validator in validators)
-                    {
-                        var result = await validator.ValidateAsync(validationContext);
-                        AddFailures(validationFailures, result.Errors, validator);
-                    }
-                }
-                else
-                {
-                    foreach (var validator in validators)
-                    {
-                        var result = validator.Validate(validationContext);
-                        AddFailures(validationFailures, result.Errors, validator);
-                    }
+                    var result = await validator.ValidateEx(validationContext);
+                    AddFailures(validationFailures, result.Errors, validator);
                 }
 
                 if (validationFailures.Any())
@@ -73,21 +66,12 @@ namespace EfFluentValidation
                 var clrType = entry.Metadata.ClrType;
                 var validationContext = BuildValidationContext(dbContext, entry);
                 var changedProperties = entry.ChangedProperties().ToList();
-                if (validationContext.IsAsync)
+                foreach (var validator in validatorFactory(clrType))
                 {
-                    foreach (var validator in validatorFactory(clrType))
-                    {
-                        var result = await validator.ValidateAsync(validationContext);
-                        AddErrors(result, changedProperties, validationFailures, validator);
-                    }
-                }
-                else
-                {
-                    foreach (var validator in validatorFactory(clrType))
-                    {
-                        var result = validator.Validate(validationContext);
-                        AddErrors(result, changedProperties, validationFailures, validator);
-                    }
+                    var result = await validator.ValidateEx(validationContext);
+                    var errors = result.Errors.Where(x => changedProperties.Contains(x.PropertyName));
+
+                    AddFailures(validationFailures, errors, validator);
                 }
 
                 if (validationFailures.Any())
@@ -95,18 +79,6 @@ namespace EfFluentValidation
                     yield return new(entry.Entity, clrType, validationFailures);
                 }
             }
-        }
-
-        static void AddErrors(ValidationResult result, List<string> changedProperties, List<TypeValidationFailure> validationFailures, IValidator validator)
-        {
-            var errors = result.Errors.Where(x => changedProperties.Contains(x.PropertyName));
-
-            AddFailures(validationFailures, errors, validator);
-        }
-
-        static void AddFailures(List<TypeValidationFailure> failures, IEnumerable<ValidationFailure> errors, IValidator validator)
-        {
-            failures.AddRange(errors.Select(failure => new TypeValidationFailure(validator.GetType(), failure)));
         }
 
         static IValidationContext BuildValidationContext(DbContext dbContext, EntityEntry entry)

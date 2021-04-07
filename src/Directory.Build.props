@@ -2,7 +2,7 @@
 <Project>
   <PropertyGroup>
     <NoWarn>CS1591;CS1574</NoWarn>
-    <Version>2.1.1</Version>
+    <Version>2.1.0</Version>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <PackageTags>EntityFramework, FluentValidation, Validation</PackageTags>
     <Description>Adds FluentValidation support to EntityFramework.</Description>
