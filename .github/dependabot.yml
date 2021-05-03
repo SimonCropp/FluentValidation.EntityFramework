@@ -1,13 +1,7 @@
 version: 2
 updates:
 - package-ecosystem: nuget
-  directory: "/"
+  directory: "/src"
   schedule:
     interval: daily
-    time: "19:00"
   open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: Microsoft.EntityFrameworkCore.InMemory
-    versions:
-    - 5.0.3
-    - 5.0.4
