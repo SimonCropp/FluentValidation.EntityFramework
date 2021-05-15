@@ -118,7 +118,7 @@ ValidationFinder wraps `FluentValidation.AssemblyScanner.FindValidatorsInAssembl
 ```cs
 var scanResults = ValidationFinder.FromAssemblyContaining<SampleDbContext>();
 ```
-<sup><a href='/src/Tests/Tests.cs#L99-L103' title='Snippet source file'>snippet source</a> | <a href='#snippet-fromassemblycontaining' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L100-L104' title='Snippet source file'>snippet source</a> | <a href='#snippet-fromassemblycontaining' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -187,7 +187,7 @@ var scanResults = ValidationFinder.FromAssemblyContaining<SampleDbContext>();
 ValidatorTypeCache typeCache = new(scanResults);
 var validators = typeCache.GetValidators(typeof(Employee));
 ```
-<sup><a href='/src/Tests/Tests.cs#L111-L117' title='Snippet source file'>snippet source</a> | <a href='#snippet-validatortypecacheusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L112-L118' title='Snippet source file'>snippet source</a> | <a href='#snippet-validatortypecacheusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
