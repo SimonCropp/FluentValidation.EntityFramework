@@ -27,7 +27,7 @@ public class Tests
         var exception = await Assert.ThrowsAsync<EntityValidationException>(
             () => data.SaveChangesAsync());
         await Verifier.Verify(exception)
-            .ModifySerialization(x=>x.DontScrubNumericIds());
+            .ModifySerialization(x => x.DontScrubNumericIds());
     }
 
     #region InValid
