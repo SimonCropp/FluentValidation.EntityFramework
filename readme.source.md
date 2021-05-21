@@ -5,8 +5,6 @@
 
 Adds [FluentValidation](https://fluentvalidation.net/) support to [EntityFramework](https://docs.microsoft.com/en-us/ef/core/).
 
-Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-effluentvalidation?utm_source=nuget-effluentvalidation&utm_medium=referral&utm_campaign=enterprise).
-
 
 ## NuGet package
 
@@ -103,10 +101,6 @@ In some scenarios it may not be possible to use a custom base class, I thise cas
 
 snippet: CustomDbContext
 
-
-## Security contact information
-
-To report a security vulnerability, use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
 
 
 ## Icon

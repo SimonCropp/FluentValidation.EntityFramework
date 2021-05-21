@@ -12,8 +12,6 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 Adds [FluentValidation](https://fluentvalidation.net/) support to [EntityFramework](https://docs.microsoft.com/en-us/ef/core/).
 
-Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-effluentvalidation?utm_source=nuget-effluentvalidation&utm_medium=referral&utm_campaign=enterprise).
-
 
 ## NuGet package
 
@@ -339,10 +337,6 @@ public class SampleDbContext :
 <sup><a href='/src/Tests/Snippets/DataContext/CustomDbContext.cs#L9-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-customdbcontext' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-
-## Security contact information
-
-To report a security vulnerability, use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
 
 
 ## Icon
