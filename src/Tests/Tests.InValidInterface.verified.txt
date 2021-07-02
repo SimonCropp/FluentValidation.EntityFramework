@@ -22,8 +22,8 @@ Validation failed
             AttemptedValue: -1,
             ErrorCode: NotEqualValidator,
             FormattedMessagePlaceholderValues: {
-              ComparisonValue: -1,
               ComparisonProperty: ,
+              ComparisonValue: -1,
               PropertyName: Id,
               PropertyValue: -1
             }
